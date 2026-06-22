@@ -130,7 +130,6 @@ const en: Dictionary = {
     conceptTitle: "The Concept: Hidden vs. Shown",
     conceptBody: [
       "Jewelry and secrets share a paradox: both are deeply personal, both are rarely shared, and both are most powerful when they are finally revealed.",
-      "Secrets are always hidden. Jewelry is always shown. Yet both are private — and never truly shared.",
       "Everything we make — from the logo to the packaging to the website — exists somewhere on this spectrum. Dark before light. Sealed before open. Private before public.",
     ],
     conceptQuote: "Secrets are always hidden. Jewelry is always shown. Yet both are private — and never truly shared.",
