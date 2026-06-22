@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rosegold: #b76e79;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink text-silver antialiased;
+}
+
+/* Thin rose-gold divider used between sections */
+.rule-gold {
+  @apply h-px w-16 bg-rosegold/60;
+}
