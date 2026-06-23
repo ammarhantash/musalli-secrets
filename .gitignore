@@ -19,6 +19,10 @@ npm-debug.log*
 # OS / editor
 .DS_Store
 Thumbs.db
+.vs/
+
+# Lock files (single-dev project — lock committed separately if needed)
+package-lock.json
 
 # SDD scratch (briefs, reports, diffs, ledger)
 .superpowers/
