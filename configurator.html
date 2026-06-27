@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configure — Musalli Secrets</title>
+  <link rel="stylesheet" href="/style.css" />
+  <!-- Fallback import map: resolves bare 'three' specifiers when Vite's transform is unavailable.
+       When Vite does transform jewelry-viewer.js, it rewrites bare specifiers to absolute /node_modules/.vite/deps/
+       paths before the browser sees them, so this map is never consulted. When it doesn't (e.g. cold
+       server start before dep optimisation), the browser uses these CDN fallbacks instead. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+      "three/examples/jsm/controls/OrbitControls.js": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/controls/OrbitControls.js",
+      "three/examples/jsm/environments/RoomEnvironment.js": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/environments/RoomEnvironment.js"
+    }
+  }
+  </script>
+  <script type="module" src="/src/components/site-navbar.js"></script>
+  <script type="module" src="/src/components/jewelry-viewer.js"></script>
+  <script type="module" src="/src/components/config-controls.js"></script>
+  <script type="module" src="/src/components/price-display.js"></script>
+  <script type="module" src="/src/configurator-page.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: #1A1A1A;
+      color: #F5F5F5;
+      display: flex;
+      flex-direction: column;
+      height: 100dvh; /* dynamic viewport height — avoids mobile browser bar issues */
+    }
+    site-navbar { flex-shrink: 0; }
+
+    #loading {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #error-state {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    /* Configurator: hidden until JS reveals it */
+    #configurator {
+      display: none;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Inner layout: stacked on mobile, side-by-side on desktop */
+    #conf-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    /* Mobile: viewer below controls */
+    #controls-panel {
+      flex-shrink: 0;
+      background: #242424;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #viewer-wrap {
+      position: relative;
+      flex: 1;
+      min-height: 45vh;
+      background: #0F0F0F;
+      border-top: 1px solid #2A2A2A;
+    }
+
+    jewelry-viewer {
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+
+    /* Desktop: controls LEFT (fixed width), viewer fills RIGHT */
+    @media (min-width: 900px) {
+      #conf-inner {
+        flex-direction: row;
+      }
+      #controls-panel {
+        width: 380px;
+        flex-shrink: 0;
+        border-top: none;
+        border-right: 1px solid #2A2A2A;
+        max-height: 100%;
+      }
+      #viewer-wrap {
+        flex: 1;
+        min-height: unset;
+        border-top: none;
+        border-left: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <site-navbar active="catalog"></site-navbar>
+
+  <div id="loading">
+    <span id="loading-text" style="color:#C5A059;font-size:0.75rem;letter-spacing:0.4em;text-transform:uppercase">Loading…</span>
+  </div>
+
+  <div id="configurator">
+    <div id="conf-inner">
+
+      <!-- Controls panel -->
+      <div id="controls-panel">
+        <div style="padding:1.25rem 1.75rem 0">
+          <a id="back-link" href="./catalog.html" style="font-size:0.65rem;color:#555;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none">← All Sets</a>
+        </div>
+
+        <div style="padding:0.75rem 1.75rem 1.25rem;border-bottom:1px solid #2E2E2E">
+          <span id="set-occasion" style="font-size:0.65rem;color:#C5A059;letter-spacing:0.35em;text-transform:uppercase;display:block;margin-bottom:0.2rem"></span>
+          <h1 id="set-name" style="font-size:1.1rem;font-weight:300;margin-bottom:0.4rem"></h1>
+          <p id="set-desc" style="font-size:0.75rem;color:#555;line-height:1.6"></p>
+        </div>
+
+        <div style="padding:1rem 1.75rem 1.25rem;border-bottom:1px solid #2E2E2E">
+          <h2 id="pieces-heading" style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.25em;color:#888;margin-bottom:0.75rem">Pieces in this set</h2>
+          <div id="pieces-list"></div>
+        </div>
+
+        <div style="padding:1.5rem 1.75rem;border-bottom:1px solid #2E2E2E">
+          <config-controls></config-controls>
+        </div>
+
+        <div style="padding:1.5rem 1.75rem;margin-top:auto">
+          <price-display></price-display>
+          <button id="commission-btn"
+            style="width:100%;padding:0.9rem;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;background:#C5A059;color:#1A1A1A;font-weight:500;border:none;cursor:pointer;transition:background 0.2s;margin-top:1rem"
+            onmouseover="if(!this.disabled)this.style.background='#A68A4D'"
+            onmouseout="if(!this.disabled)this.style.background='#C5A059'">
+            Commission This Set
+          </button>
+          <p id="price-note" style="font-size:0.68rem;color:#444;text-align:center;margin-top:0.75rem;line-height:1.6">
+            Prices in SAR · VAT inclusive · Final price confirmed at commission
+          </p>
+        </div>
+      </div>
+
+      <!-- 3D Viewer — comes after controls in DOM, appears on RIGHT on desktop -->
+      <div id="viewer-wrap">
+        <jewelry-viewer id="viewer"></jewelry-viewer>
+        <div id="viewer-hint" style="position:absolute;bottom:1rem;inset-inline-start:1.25rem;font-size:0.65rem;color:#444;letter-spacing:0.15em;user-select:none;pointer-events:none">
+          DRAG TO ROTATE · SCROLL TO ZOOM
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="error-state">
+    <p id="error-msg" style="color:#666;font-size:0.875rem">Set not found.</p>
+    <a id="error-back" href="./catalog.html" style="font-size:0.75rem;color:#C5A059;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none">← Back to Collection</a>
+  </div>
+
+</body>
+</html>

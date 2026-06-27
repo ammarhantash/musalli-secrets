@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Musalli Secrets — Private Preview</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script type="module" src="/src/gate-page.js"></script>
+</head>
+<body style="min-height:100vh;background:#0A0A0A;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem">
+
+  <div style="width:100%;max-width:26rem;text-align:center">
+
+    <!-- Logo -->
+    <div style="margin-bottom:3rem">
+      <div style="font-family:'Playfair Display',serif;font-size:1.25rem;
+                  letter-spacing:0.35em;color:#F0EDE8;margin-bottom:0.5rem">
+        MUSALLI·SECRETS
+      </div>
+      <div style="font-size:0.65rem;letter-spacing:0.3em;color:#333;text-transform:uppercase">
+        Private Client Preview
+      </div>
+    </div>
+
+    <!-- Key icon -->
+    <div style="font-size:2.5rem;margin-bottom:2.5rem;opacity:0.4">🔑</div>
+
+    <!-- Form -->
+    <div id="gate-form">
+      <p style="font-size:0.8rem;color:#444;line-height:1.7;margin-bottom:2rem">
+        This preview is shared exclusively with invited guests.<br>
+        Enter your access code to continue.
+      </p>
+
+      <input id="gate-input" type="password" placeholder="Access code"
+        style="width:100%;background:#111;border:1px solid #222;color:#F0EDE8;
+               padding:0.875rem 1rem;font-size:0.875rem;letter-spacing:0.1em;
+               outline:none;box-sizing:border-box;margin-bottom:0.75rem;
+               font-family:inherit;transition:border-color 0.2s"
+        onfocus="this.style.borderColor='#C5A059'"
+        onblur="this.style.borderColor='#222'" />
+
+      <p id="gate-error" style="display:none;font-size:0.75rem;color:#8B3A3A;
+         margin-bottom:0.75rem;letter-spacing:0.05em">
+        Incorrect access code. Please try again.
+      </p>
+
+      <button id="gate-btn"
+        style="width:100%;padding:0.875rem;background:#C5A059;color:#0A0A0A;
+               font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;
+               border:none;cursor:pointer;font-family:inherit;font-weight:600;
+               transition:background 0.2s"
+        onmouseover="this.style.background='#A68A4D'"
+        onmouseout="this.style.background='#C5A059'">
+        Enter
+      </button>
+    </div>
+
+    <!-- Footer note -->
+    <p style="margin-top:3rem;font-size:0.65rem;color:#222;letter-spacing:0.15em">
+      © 2026 MUSALLI SECRETS
+    </p>
+
+  </div>
+</body>
+</html>

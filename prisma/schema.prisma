@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model JewelrySet {
+  id          String     @id @default(cuid())
+  name        String
+  description String
+  occasion    String
+  pieces      SetPiece[]
+  createdAt   DateTime   @default(now())
+}
+
+model SetPiece {
+  id           String     @id @default(cuid())
+  setId        String
+  set          JewelrySet @relation(fields: [setId], references: [id], onDelete: Cascade)
+  name         String
+  category     String
+  basePriceSAR Float
+  sortOrder    Int        @default(0)
+}

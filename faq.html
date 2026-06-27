@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — Musalli Secrets</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script type="module" src="/src/components/site-navbar.js"></script>
+  <script type="module" src="/src/components/site-footer.js"></script>
+  <script type="module" src="/src/faq-page.js"></script>
+</head>
+<body style="display:flex;flex-direction:column;min-height:100vh;background:#0A0A0A;color:#F0EDE8">
+
+  <site-navbar active="faq"></site-navbar>
+
+  <main style="flex:1;max-width:52rem;margin:0 auto;padding:5rem 2rem 4rem;width:100%">
+    <h1 id="faq-title" style="font-family:'Playfair Display',serif;
+        font-size:clamp(1.75rem,4vw,2.5rem);font-weight:400;
+        color:#F0EDE8;margin-bottom:3rem;text-align:center"></h1>
+    <div id="faq-groups"></div>
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

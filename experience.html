@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Experience — Musalli Secrets</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script type="module" src="/src/components/site-navbar.js"></script>
+  <script type="module" src="/src/components/site-footer.js"></script>
+  <script type="module" src="/src/experience-page.js"></script>
+</head>
+<body style="display:flex;flex-direction:column;min-height:100vh;background:#0A0A0A;color:#F0EDE8">
+
+  <site-navbar active="experience"></site-navbar>
+
+  <main style="flex:1">
+    <!-- Hero -->
+    <section style="max-width:52rem;margin:0 auto;padding:5rem 2rem 3rem;text-align:center">
+      <h1 id="exp-title" style="font-family:'Playfair Display',serif;font-size:clamp(1.75rem,4vw,2.75rem);
+          font-weight:400;color:#F0EDE8;margin-bottom:1.25rem"></h1>
+      <p id="exp-intro" style="font-size:1rem;color:#666;line-height:1.7;font-style:italic"></p>
+    </section>
+
+    <!-- Steps -->
+    <section style="max-width:52rem;margin:0 auto;padding:2rem 2rem 4rem">
+      <div id="exp-moments"></div>
+      <p id="exp-service" style="text-align:center;font-family:'Playfair Display',serif;
+         font-size:1.1rem;color:#C5A059;margin-top:3rem;font-style:italic"></p>
+    </section>
+
+    <!-- Box -->
+    <section style="border-top:1px solid #151515;background:#080808;padding:4rem 2rem">
+      <div style="max-width:52rem;margin:0 auto">
+        <h2 id="exp-boxTitle" style="font-family:'Playfair Display',serif;font-size:1.5rem;
+            font-weight:400;color:#F0EDE8;margin-bottom:1.5rem"></h2>
+        <div id="exp-boxBody" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem"></div>
+      </div>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

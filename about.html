@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Musalli Secrets</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script type="module" src="/src/components/site-navbar.js"></script>
+  <script type="module" src="/src/components/site-footer.js"></script>
+  <script type="module" src="/src/about-page.js"></script>
+</head>
+<body style="display:flex;flex-direction:column;min-height:100vh;background:#0A0A0A;color:#F0EDE8">
+
+  <site-navbar active="about"></site-navbar>
+
+  <!-- Hero statement -->
+  <section style="border-bottom:1px solid #151515;background:#080808">
+    <div style="max-width:56rem;margin:0 auto;padding:4rem 2rem;text-align:center">
+      <p id="about-hero" style="font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3vw,1.75rem);
+         font-weight:400;color:#C5A059;line-height:1.6;font-style:italic"></p>
+    </div>
+  </section>
+
+  <!-- Sections -->
+  <main style="max-width:52rem;margin:0 auto;padding:4rem 2rem;flex:1">
+    <div id="about-sections"></div>
+
+    <!-- Values -->
+    <div style="margin-top:4rem;border-top:1px solid #151515;padding-top:3rem">
+      <div id="about-values" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem"></div>
+    </div>
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>

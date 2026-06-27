@@ -1,0 +1,8 @@
+name = "musalli-secrets"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "musalli-db"
+database_id = "292857f3-ed8d-4e43-a68c-4616d5457a36"

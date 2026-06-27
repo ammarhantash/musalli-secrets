@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand — Musalli Secrets</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script type="module" src="/src/components/site-navbar.js"></script>
+  <script type="module" src="/src/components/site-footer.js"></script>
+  <script type="module" src="/src/brand-page.js"></script>
+</head>
+<body style="display:flex;flex-direction:column;min-height:100vh;background:#0A0A0A;color:#F0EDE8">
+
+  <site-navbar active="brand"></site-navbar>
+
+  <main style="flex:1">
+    <!-- Hero -->
+    <section style="border-bottom:1px solid #151515;background:#080808">
+      <div style="max-width:52rem;margin:0 auto;padding:5rem 2rem 4rem;text-align:center">
+        <h1 id="brand-title" style="font-family:'Playfair Display',serif;
+            font-size:clamp(1.75rem,4vw,2.75rem);font-weight:400;
+            color:#F0EDE8;margin-bottom:1.5rem"></h1>
+        <p id="brand-intro" style="font-size:0.9375rem;color:#555;
+           line-height:1.8;max-width:36rem;margin:0 auto"></p>
+      </div>
+    </section>
+
+    <!-- Concept -->
+    <section style="max-width:52rem;margin:0 auto;padding:4rem 2rem">
+      <h2 id="brand-conceptTitle" style="font-family:'Playfair Display',serif;
+          font-size:1.5rem;font-weight:400;color:#C5A059;margin-bottom:2rem"></h2>
+      <div id="brand-conceptBody" style="margin-bottom:2.5rem"></div>
+
+      <!-- Quote -->
+      <blockquote id="brand-conceptQuote" style="border-left:2px solid #C5A059;
+          padding:1rem 0 1rem 1.5rem;margin:2.5rem 0;font-family:'Playfair Display',serif;
+          font-size:1.05rem;color:#777;font-style:italic;line-height:1.7"></blockquote>
+    </section>
+
+    <!-- Logo -->
+    <section style="border-top:1px solid #151515;background:#080808;padding:4rem 2rem">
+      <div style="max-width:52rem;margin:0 auto">
+        <!-- Key visual placeholder -->
+        <div style="width:8rem;height:8rem;border:1px solid #222;border-radius:50%;
+             display:flex;align-items:center;justify-content:center;margin:0 auto 3rem;
+             font-size:3rem">🔑</div>
+        <h2 id="brand-logoTitle" style="font-family:'Playfair Display',serif;
+            font-size:1.5rem;font-weight:400;color:#F0EDE8;margin-bottom:1rem;
+            text-align:center"></h2>
+        <p id="brand-logoIntro" style="color:#555;line-height:1.8;
+           text-align:center;max-width:38rem;margin:0 auto"></p>
+      </div>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+</body>
+</html>
