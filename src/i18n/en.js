@@ -108,6 +108,39 @@ const en = {
     logoTitle: 'The Logo: A Key Locked in Form',
     logoIntro: 'The key and lock are not decoration. They are the brand\'s central promise: that what we offer is worth protecting, worth waiting for, and worth the moment of opening.',
   },
+  catalog: {
+    heading: 'Choose Your Set',
+    eyebrow: 'The Collection',
+    subheading: 'Each set is configured as one — a shared metal, gemstone, and carat weight applied across every piece. Price updates in real time in SAR.',
+    setFrom: 'Set from',
+    configureSet: 'Configure Set →',
+    loading: 'Loading collection…',
+    sets: {
+      set_alnur: {
+        name: 'Al Nur Bridal Set',
+        description: 'A luminous bridal suite evoking the golden light of Mecca at dawn. Four pieces unified by geometric precision.',
+        pieces: { p1: 'Solitaire Engagement Ring', p2: 'Diamond Wedding Band', p3: 'Drop Pendant Necklace', p4: 'Stud Earrings' },
+      },
+      set_layla: {
+        name: 'Layla Evening Set',
+        description: 'Sculptural evening pieces for the woman who commands a room. Fluid lines, bold presence.',
+        pieces: { p5: 'Cocktail Ring', p6: 'Collar Necklace', p7: 'Drop Chandelier Earrings' },
+      },
+      set_mecca: {
+        name: 'Mecca Heritage Set',
+        description: 'Rooted in Islamic geometric tradition. Three pieces that carry centuries of craft into the present.',
+        pieces: { p8: 'Filigree Band Ring', p9: 'Geometric Cuff', p10: 'Crescent Necklace' },
+      },
+      set_yawm: {
+        name: 'Yawm Everyday Set',
+        description: 'Refined simplicity for daily wear. Lightweight, durable, and effortlessly elegant.',
+        pieces: { p11: 'Stackable Ring', p12: 'Delicate Chain Necklace', p13: 'Huggie Earrings' },
+      },
+    },
+    occasions: {
+      Bridal: 'Bridal', Evening: 'Evening', Heritage: 'Heritage', Everyday: 'Everyday',
+    },
+  },
   configurator: {
     backLink: '← All Sets',
     piecesHeading: 'Pieces in this set',
