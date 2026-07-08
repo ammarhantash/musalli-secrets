@@ -29,13 +29,7 @@ export default defineConfig(({ mode }) => {
   resolve: {
     alias: { '@': resolve(__dirname, 'src') },
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-      },
-    },
-  },
+  // `npm run dev` is frontend-only; run `wrangler pages dev dist --d1 DB=musalli-db`
+  // when you need the /api Pages Functions locally (see DEPLOY.md).
   };
 });
