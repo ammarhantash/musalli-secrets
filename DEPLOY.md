@@ -46,7 +46,7 @@ wrangler d1 execute musalli-db --remote --command="SELECT id FROM jewelry_sets"
 
 ```bash
 wrangler pages secret put VITE_DRAFT_PASSWORD
-# Enter when prompted: musalli2026
+# Enter the password when prompted — never write it in this file or commit it anywhere
 ```
 
 > Note: Cloudflare Pages doesn't inject VITE_* vars at runtime the same way Vercel does.
@@ -76,7 +76,12 @@ wrangler pages secret put VITE_DRAFT_PASSWORD
 4. Under **Environment variables → Production**, add:
    | Variable | Value |
    |---|---|
-   | `VITE_DRAFT_PASSWORD` | `musalli2026` |
+   | `VITE_DRAFT_PASSWORD` | *(your draft password — set in the dashboard only, never committed)* |
+
+   > ⚠️ The previous password was committed to this public repo and must be
+   > considered burned — rotate it in the Pages dashboard. Note the gate is
+   > client-side: the password is baked into the public JS bundle, so treat it
+   > as a soft deterrent, not access control.
 
 5. Under **Functions → D1 database bindings**, add:
    | Variable name | Database |
@@ -110,7 +115,7 @@ wrangler d1 execute musalli-db --local --file=./seed.sql
 wrangler pages dev dist --d1 DB=musalli-db
 ```
 
-Or keep using Vite dev server (`npm run dev`) with the Go backend on port 8080 — both approaches work.
+`npm run dev` (Vite) is frontend-only — use `wrangler pages dev` as above when you need the `/api` functions locally.
 
 ---
 

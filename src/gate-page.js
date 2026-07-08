@@ -4,8 +4,13 @@ const input  = document.getElementById('gate-input');
 const btn    = document.getElementById('gate-btn');
 const errMsg = document.getElementById('gate-error');
 
-const params   = new URLSearchParams(location.search);
-const returnTo = params.get('from') || '/';
+const params = new URLSearchParams(location.search);
+// Only allow same-origin paths — anything else (https://…, //evil.com) falls back to '/'
+let returnTo = '/';
+try {
+  const raw = decodeURIComponent(params.get('from') || '/');
+  if (raw.startsWith('/') && !raw.startsWith('//')) returnTo = raw;
+} catch { /* malformed encoding — keep '/' */ }
 
 function attempt() {
   const val = input.value.trim();
@@ -13,7 +18,7 @@ function attempt() {
 
   if (isCorrectPassword(val)) {
     setAuth(val);
-    location.replace(decodeURIComponent(returnTo));
+    location.replace(returnTo);
   } else {
     errMsg.style.display = 'block';
     input.style.borderColor = '#8B3A3A';
