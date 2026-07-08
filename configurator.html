@@ -57,11 +57,16 @@
       overflow: hidden;
     }
 
-    /* Inner layout: stacked on mobile, side-by-side on desktop */
+    /* Inner layout: stacked on mobile, side-by-side on desktop.
+       flex:1 + min-width:0 make it fill #configurator on the main axis —
+       without flex-grow it collapses to the controls' content width and the
+       flex:1 viewer pane gets 0 width on desktop. */
     #conf-inner {
       display: flex;
       flex-direction: column;
       height: 100%;
+      flex: 1;
+      min-width: 0;
     }
 
     /* Mobile: viewer below controls */

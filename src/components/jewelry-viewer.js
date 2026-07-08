@@ -17,6 +17,9 @@ const GEM_CFG = {
 class JewelryViewer extends HTMLElement {
   connectedCallback() {
     this.style.cssText = 'display:block;position:absolute;inset:0;overflow:hidden;';
+    // ResizeObserver handles resizes after init AND can trigger the first init.
+    // But RO delivery timing around a display:none→flex reveal is unreliable, so
+    // we don't depend on it alone — _pollInit polls for size as a robust fallback.
     this._ro = new ResizeObserver(entries => {
       const { width: w, height: h } = entries[0].contentRect;
       if (!this._renderer && w > 0 && h > 0) {
@@ -28,6 +31,32 @@ class JewelryViewer extends HTMLElement {
       }
     });
     this._ro.observe(this);
+    this._armWatchdog();       // arm regardless of how init is triggered
+    this._pollInit(0);         // robustly kick off init once the pane has size
+  }
+
+  // Poll for a non-zero box, then init. Uses setTimeout (not rAF) so it still
+  // fires when the tab is backgrounded/throttled — rAF pauses there and would
+  // never initialise. ~50 tries × 60ms ≈ 3s, comfortably within the watchdog.
+  _pollInit(tries) {
+    if (this._renderer || !this.isConnected) return;
+    const w = this.offsetWidth, h = this.offsetHeight;
+    if (w > 0 && h > 0) { this._setup(w, h); return; }
+    if (tries < 50) this._pollTimer = setTimeout(() => this._pollInit(tries + 1), 60);
+  }
+
+  // If the pane has been sized for a while but no WebGL canvas ever appeared,
+  // the viewer silently failed to start (e.g. hardware acceleration off / GPU
+  // blocklisted). Replace the blank pane with a self-explaining message.
+  _armWatchdog() {
+    if (this._watchdog) return;
+    this._watchdog = setTimeout(() => {
+      if (this._renderer) return; // init succeeded — nothing to do
+      this.innerHTML = `<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;text-align:center;padding:1.5rem;pointer-events:none">
+        <div style="color:#C5A059;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase">3D preview unavailable</div>
+        <div style="color:#666;font-size:0.65rem;line-height:1.7;max-width:22rem">Your browser could not start the 3D viewer. Enable hardware acceleration in your browser settings, then reload — configuration and pricing below work either way.</div>
+      </div>`;
+    }, 2500);
   }
 
   // Called by configurator-page.js as a hint; ResizeObserver also triggers init
@@ -40,6 +69,8 @@ class JewelryViewer extends HTMLElement {
 
   disconnectedCallback() {
     cancelAnimationFrame(this._raf);
+    clearTimeout(this._pollTimer);
+    clearTimeout(this._watchdog);
     this._renderer?.dispose();
     this._ro?.disconnect();
     if (this._onConfigChange) store.removeEventListener('config-change', this._onConfigChange);
@@ -48,7 +79,9 @@ class JewelryViewer extends HTMLElement {
   _setup(w, h) {
     try {
       this._build(w, h);
+      clearTimeout(this._watchdog); // definitive success — cancel the watchdog
     } catch (e) {
+      clearTimeout(this._watchdog); // definitive failure — keep this specific error, not the generic one
       console.error('[jewelry-viewer] WebGL init failed:', e);
       this.innerHTML = `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#C5A059;font-size:0.65rem;letter-spacing:0.15em;text-align:center;padding:1rem;pointer-events:none">VIEWER ERROR<br><span style="color:#666;margin-top:0.5rem;display:block;font-size:0.6rem">${String(e)}</span></div>`;
       return;
@@ -60,6 +93,7 @@ class JewelryViewer extends HTMLElement {
   }
 
   _build(w, h) {
+    this.innerHTML = ''; // clear any watchdog "unavailable" message before mounting the canvas
     // Renderer
     this._renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     this._renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
