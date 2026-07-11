@@ -1,17 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500&family=Amiri:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg: #0A0A0A;        /* page background (warm near-black) */
+  --surface: #242424;   /* cards & panels */
+  --surface-2: #111111; /* inputs */
+  --line: #2A2A2A;      /* hairline borders */
+  --line-soft: #1E1E1E;
+  --ink: #F0EDE8;       /* primary text (warm ivory) */
+  --ink-2: #9A9A9A;     /* secondary text — AA on --bg */
+  --ink-3: #7A7A7A;     /* tertiary/caption — AA on --bg */
+  --gold: #C5A059;
+  --gold-dim: #A68A4D;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: #1A1A1A;
-  color: #F5F5F5;
+  background: var(--bg);
+  color: var(--ink);
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Arabic: Playfair Display has no Arabic glyphs, so map every serif-display
+   usage (they carry an inline 'Playfair Display' font-family) to Amiri in RTL.
+   !important is required to beat the inline styles. */
+[dir="rtl"] [style*="Playfair"] { font-family: 'Amiri', serif !important; }
+
+/* Visible keyboard focus everywhere (interactions were mouse-only before) */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
 /* Range slider */
@@ -24,15 +48,26 @@ input[type=range] {
 }
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background: #C5A059;
+  background: var(--gold);
   cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+}
+input[type=range]:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.4);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #1A1A1A; }
+::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: #3A3A3A; }
-::-webkit-scrollbar-thumb:hover { background: #C5A059; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }

@@ -98,7 +98,7 @@ class JewelryViewer extends HTMLElement {
     this._renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     this._renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this._renderer.setSize(w, h, false);
-    this._renderer.setClearColor(0x1A1A1A);
+    this._renderer.setClearColor(0x0A0A0A);
     this._renderer.domElement.style.cssText = 'display:block;width:100%;height:100%;';
     this.appendChild(this._renderer.domElement);
 

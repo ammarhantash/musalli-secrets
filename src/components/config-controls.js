@@ -32,7 +32,7 @@ class ConfigControls extends HTMLElement {
               <button data-metal="${m}"
                 style="flex:1;padding:0.625rem;border:1px solid ${m === metalType ? '#C5A059' : '#333'};
                   background:${m === metalType ? 'rgba(197,160,89,0.1)' : 'transparent'};
-                  color:${m === metalType ? '#C5A059' : '#888'};
+                  color:${m === metalType ? '#C5A059' : '#9A9A9A'};
                   font-size:0.7rem;letter-spacing:0.1em;cursor:pointer;transition:all 0.2s">
                 ${metalLabel[m] || m}
               </button>`).join('')}
@@ -47,7 +47,7 @@ class ConfigControls extends HTMLElement {
               <button data-gem="${g.key}"
                 style="flex:1;padding:0.625rem;border:1px solid ${g.key === gemType ? '#C5A059' : '#333'};
                   background:${g.key === gemType ? 'rgba(197,160,89,0.1)' : 'transparent'};
-                  color:${g.key === gemType ? '#C5A059' : '#888'};
+                  color:${g.key === gemType ? '#C5A059' : '#9A9A9A'};
                   font-size:0.7rem;letter-spacing:0.05em;cursor:pointer;transition:all 0.2s;
                   display:flex;align-items:center;justify-content:center;gap:0.375rem">
                 <span style="width:8px;height:8px;border-radius:50%;background:${g.color};display:inline-block;flex-shrink:0"></span>
@@ -65,8 +65,8 @@ class ConfigControls extends HTMLElement {
           <input type="range" min="0.5" max="5" step="0.25" value="${caratWeight}" data-carat
             style="width:100%" />
           <div style="display:flex;justify-content:space-between;margin-top:0.5rem">
-            <span style="font-size:0.65rem;color:#444">0.50 ct</span>
-            <span style="font-size:0.65rem;color:#444">5.00 ct</span>
+            <span style="font-size:0.65rem;color:#9A9A9A">0.50 ct</span>
+            <span style="font-size:0.65rem;color:#9A9A9A">5.00 ct</span>
           </div>
         </div>
 

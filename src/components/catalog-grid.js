@@ -46,7 +46,7 @@ class CatalogGrid extends HTMLElement {
   async connectedCallback() {
     const cat = t(getLang()).catalog;
     const api = this.getAttribute('api') || '/api/sets';
-    this.innerHTML = `<div style="text-align:center;padding:5rem 0;color:#555;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase">${cat.loading}</div>`;
+    this.innerHTML = `<div style="text-align:center;padding:5rem 0;color:#7A7A7A;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase">${cat.loading}</div>`;
 
     let sets;
     try {
@@ -61,9 +61,10 @@ class CatalogGrid extends HTMLElement {
     try {
       if (!sets.length) {
         this.innerHTML = `
-          <div style="text-align:center;padding:5rem 0;border:1px solid #2A2A2A">
-            <p style="color:#555;font-size:0.875rem;margin-bottom:0.75rem">Database is empty.</p>
-            <code style="font-size:0.75rem;color:#C5A059;background:#242424;padding:0.25rem 0.75rem;border-radius:2px">npm run db:seed</code>
+          <div style="text-align:center;padding:5rem 2rem;border:1px solid #2A2A2A;max-width:34rem;margin:0 auto">
+            <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:#F0EDE8;margin-bottom:0.75rem">${cat.emptyTitle}</h2>
+            <p style="color:#9A9A9A;font-size:0.875rem;line-height:1.6;margin-bottom:1.5rem">${cat.emptyBody}</p>
+            <a href="/index.html#waitlist" style="font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:#C5A059;text-decoration:none;border-bottom:1px solid #C5A059;padding-bottom:2px">${cat.emptyCta}</a>
           </div>`;
         return;
       }
@@ -89,9 +90,9 @@ class CatalogGrid extends HTMLElement {
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem">
         <div style="display:flex;align-items:center;gap:0.5rem">
           <span style="width:4px;height:4px;border-radius:50%;background:rgba(197,160,89,0.5);display:inline-block"></span>
-          <span style="font-size:0.75rem;color:#888">${setT?.pieces?.[p.id] || p.name}</span>
+          <span style="font-size:0.75rem;color:#9A9A9A">${setT?.pieces?.[p.id] || p.name}</span>
         </div>
-        <span style="font-size:0.75rem;color:#555;font-variant-numeric:tabular-nums">${formatSAR(p.basePriceSAR)}</span>
+        <span style="font-size:0.75rem;color:#7A7A7A;font-variant-numeric:tabular-nums">${formatSAR(p.basePriceSAR)}</span>
       </div>`).join('');
 
     return `
@@ -110,17 +111,17 @@ class CatalogGrid extends HTMLElement {
           <div style="position:absolute;inset:0;background:linear-gradient(to top,#242424,transparent)"></div>
         </div>
 
-        <h2 style="color:#F5F5F5;font-weight:300;font-size:1.125rem;letter-spacing:0.05em;margin-bottom:0.5rem">${name}</h2>
-        <p style="font-size:0.75rem;color:#555;line-height:1.6;margin-bottom:1.5rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${description}</p>
+        <h2 style="color:#F0EDE8;font-weight:300;font-size:1.125rem;letter-spacing:0.05em;margin-bottom:0.5rem">${name}</h2>
+        <p style="font-size:0.75rem;color:#9A9A9A;line-height:1.6;margin-bottom:1.5rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${description}</p>
 
         <div style="border-top:1px solid #2A2A2A;padding-top:1.25rem;margin-bottom:1.5rem">${piecesHtml}</div>
 
         <div style="display:flex;align-items:flex-end;justify-content:space-between">
           <div>
-            <div style="font-size:0.7rem;color:#444;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px">${cat.setFrom}</div>
+            <div style="font-size:0.7rem;color:#7A7A7A;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px">${cat.setFrom}</div>
             <div style="color:#C5A059;font-size:1.125rem;font-weight:300;font-variant-numeric:tabular-nums">${formatSAR(baseTotal)}</div>
           </div>
-          <span style="font-size:0.7rem;color:#444;letter-spacing:0.2em;text-transform:uppercase;transition:color 0.2s">${cat.configureSet}</span>
+          <span style="font-size:0.7rem;color:#C5A059;letter-spacing:0.2em;text-transform:uppercase;transition:color 0.2s">${cat.configureSet}</span>
         </div>
       </a>`;
   }

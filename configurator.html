@@ -27,8 +27,8 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
     body {
-      background: #1A1A1A;
-      color: #F5F5F5;
+      background: #0A0A0A;
+      color: #F0EDE8;
       display: flex;
       flex-direction: column;
       height: 100dvh; /* dynamic viewport height — avoids mobile browser bar issues */
@@ -82,7 +82,7 @@
       position: relative;
       flex: 1;
       min-height: 45vh;
-      background: #0F0F0F;
+      background: #0A0A0A;
       border-top: 1px solid #2A2A2A;
     }
 
@@ -127,13 +127,13 @@
       <!-- Controls panel -->
       <div id="controls-panel">
         <div style="padding:1.25rem 1.75rem 0">
-          <a id="back-link" href="./catalog.html" style="font-size:0.65rem;color:#555;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none">← All Sets</a>
+          <a id="back-link" href="./catalog.html" style="font-size:0.65rem;color:#9A9A9A;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none">← All Sets</a>
         </div>
 
         <div style="padding:0.75rem 1.75rem 1.25rem;border-bottom:1px solid #2E2E2E">
           <span id="set-occasion" style="font-size:0.65rem;color:#C5A059;letter-spacing:0.35em;text-transform:uppercase;display:block;margin-bottom:0.2rem"></span>
           <h1 id="set-name" style="font-size:1.1rem;font-weight:300;margin-bottom:0.4rem"></h1>
-          <p id="set-desc" style="font-size:0.75rem;color:#555;line-height:1.6"></p>
+          <p id="set-desc" style="font-size:0.75rem;color:#9A9A9A;line-height:1.6"></p>
         </div>
 
         <div style="padding:1rem 1.75rem 1.25rem;border-bottom:1px solid #2E2E2E">
@@ -148,12 +148,12 @@
         <div style="padding:1.5rem 1.75rem;margin-top:auto">
           <price-display></price-display>
           <button id="commission-btn"
-            style="width:100%;padding:0.9rem;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;background:#C5A059;color:#1A1A1A;font-weight:500;border:none;cursor:pointer;transition:background 0.2s;margin-top:1rem"
+            style="width:100%;padding:0.9rem;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;background:#C5A059;color:#0A0A0A;font-weight:500;border:none;cursor:pointer;transition:background 0.2s;margin-top:1rem"
             onmouseover="if(!this.disabled)this.style.background='#A68A4D'"
             onmouseout="if(!this.disabled)this.style.background='#C5A059'">
             Commission This Set
           </button>
-          <p id="price-note" style="font-size:0.68rem;color:#444;text-align:center;margin-top:0.75rem;line-height:1.6">
+          <p id="price-note" style="font-size:0.68rem;color:#7A7A7A;text-align:center;margin-top:0.75rem;line-height:1.6">
             Prices in SAR · VAT inclusive · Final price confirmed at commission
           </p>
         </div>
@@ -162,7 +162,7 @@
       <!-- 3D Viewer — comes after controls in DOM, appears on RIGHT on desktop -->
       <div id="viewer-wrap">
         <jewelry-viewer id="viewer"></jewelry-viewer>
-        <div id="viewer-hint" style="position:absolute;bottom:1rem;inset-inline-start:1.25rem;font-size:0.65rem;color:#444;letter-spacing:0.15em;user-select:none;pointer-events:none">
+        <div id="viewer-hint" style="position:absolute;bottom:1rem;inset-inline-start:1.25rem;font-size:0.65rem;color:#7A7A7A;letter-spacing:0.15em;user-select:none;pointer-events:none">
           DRAG TO ROTATE · SCROLL TO ZOOM
         </div>
       </div>
@@ -171,7 +171,7 @@
   </div>
 
   <div id="error-state">
-    <p id="error-msg" style="color:#666;font-size:0.875rem">Set not found.</p>
+    <p id="error-msg" style="color:#9A9A9A;font-size:0.875rem">Set not found.</p>
     <a id="error-back" href="./catalog.html" style="font-size:0.75rem;color:#C5A059;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none">← Back to Collection</a>
   </div>
 

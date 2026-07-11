@@ -51,9 +51,9 @@ class SiteNavbar extends HTMLElement {
                      flex-direction:${isRtl ? 'row-reverse' : 'row'}">
             ${linkHtml}
             <li>
-              <button onclick="window.__toggleLang()"
+              <button onclick="window.__toggleLang()" aria-label="Toggle language"
                 style="font-size:0.68rem;letter-spacing:0.15em;background:none;border:1px solid #333;
-                       color:#888;cursor:pointer;padding:4px 10px;transition:all 0.2s;
+                       color:#AAAAAA;cursor:pointer;padding:10px 14px;min-height:40px;transition:all 0.2s;
                        font-family:inherit"
                 onmouseover="this.style.borderColor='#C5A059';this.style.color='#C5A059'"
                 onmouseout="this.style.borderColor='#333';this.style.color='#888'">
